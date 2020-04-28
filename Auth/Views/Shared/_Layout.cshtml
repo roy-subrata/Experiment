@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        @{ if (User.Identity.IsAuthenticated)
+            {
+                <p>Log out / @User.Identity.Name</p>
+            }
+            else
+            {
+                <p>Log In</p>
+            }
+        }
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

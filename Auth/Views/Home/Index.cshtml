@@ -1,0 +1,18 @@
+﻿
+
+<p>Index Page</p>
+<h4> Login User Claims</h4>
+@if (User.Identity.IsAuthenticated)
+{
+
+    <table>
+        @foreach (var clain in User.Claims)
+        {
+            <tr>
+                <td>@clain.Type</td>
+                <td>@clain.Value
+                <td>
+            </tr>
+        }
+    </table>
+}
