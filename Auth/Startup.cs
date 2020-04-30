@@ -19,23 +19,28 @@ namespace Auth
             _configuration = configuration;
         }
 
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews(o => o.Filters.Add(new AuthorizeFilter()));
             services.AddAuthentication(o =>
-            {
+            {  
                 o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                o.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-            })
-                .AddCookie("Cookies", config =>
-                 {
+               // o.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
 
-                     config.LoginPath = "/Auth/Login";
-                     config.Cookie.Name = "Granma.Cookies";
+            })
+                .AddCookie(config =>
+                {
+                   
+                    config.LoginPath = "/Auth/Login";
+                    config.Cookie.Name = "Granma.Cookies";
                      //config.Events = new CookieAuthenticationEvents { OnValidatePrincipal = async (c) => { c.Principal.HasClaim(f=>f.Type==ClaimTypes.Name); } };
                  })
+                .AddCookie("Men")
                 .AddGoogle(o =>
                 {
+                 
+                    o.SignInScheme = "Men";
                     o.ClientId = _configuration["Google:ClientId"];
                     o.ClientSecret = _configuration["Google:ClientSecret"];
                 });
@@ -49,7 +54,7 @@ namespace Auth
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

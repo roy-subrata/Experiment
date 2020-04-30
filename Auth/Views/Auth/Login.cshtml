@@ -1,10 +1,37 @@
 ﻿@model LoginModel
 
-<h3>Login Page</h3>
-<form method="post">
-    <label>UserName</label>
-    <input type="text" name="UserName" />
-    <label>Passowrd</label>
-    <input type="password" name="Password"  />
-    <button>Login</button>
-</form>
+    <div class="row mt-5">
+
+        <div class="col-md-6">
+            <div class="card">
+                <span class="card-header">Login here....</span>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label class="form-label">UserName</label>
+                            <input type="text" asp-for="UserName" class="form-control" />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="text" asp-for="Password" class="form-control" />
+                        </div>
+                        <div class="form-check">
+
+                            <input asp-for="RememberMe" type="checkbox" />
+                            Remeber Me?
+                        </div>
+                        <button class="btn btn-primary">Login</button>
+
+                    </form>
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-danger btn-sm" asp-action="GoogleLogin" asp-route-returnUrl="@Model.returnUrl">Google</a>
+        </div>
+    </div>
+
+
