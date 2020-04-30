@@ -66,7 +66,7 @@ namespace Auth.Controllers
             var externalClaims = results.Principal.Claims.ToList();
             var subjectClaim = externalClaims.FirstOrDefault(f => f.Type == ClaimTypes.NameIdentifier);
             var claims = new List<Claim> {
-             new Claim(ClaimTypes.NameIdentifier,Guid.NewGuid().ToString()),
+             new Claim(ClaimTypes.NameIdentifier,subjectClaim.Value.ToString()),
              new Claim(ClaimTypes.Name,"Roy-Subrata"),
             };
             ClaimsIdentity identity = new ClaimsIdentity(claims, "Men");
